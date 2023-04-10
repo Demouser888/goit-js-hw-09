@@ -10,6 +10,7 @@ const hours = document.querySelector('span[data-hours]');
 const days = document.querySelector('span[data-days]');
 
 btnStart.disabled = true;
+inputDate.disabled = false;
 
 const options = {
   enableTime: true,
@@ -21,6 +22,7 @@ const options = {
     if (selectedDates[0] < new Date()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       btnStart.disabled = true;
+           
     } else {
       btnStart.disabled = false;
     }
@@ -56,6 +58,7 @@ btnStart.addEventListener('click', () => {
   let timer = setInterval(() => {
     let countdown = new Date(inputDate.value) - new Date();
     btnStart.disabled = true;
+    inputDate.disabled = true;
     if (countdown >= 0) {
       let timeObject = convertMs(countdown);
       days.textContent = addLeadingZero(timeObject.days);
